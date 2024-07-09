@@ -8,10 +8,10 @@
 	branch = docking
 [submodule "vendor/glfw"]
 	path = vendor/glfw
-	url = https://github.com/thecherno/glfw
+	url = git@github.com:efvincent/glfw.git 
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = https://github.com/g-truc/glm
 [submodule "vendor/GLFW"]
 	path = vendor/GLFW
-	url = https://github.com/TheCherno/GLFW
+	url = git@github.com:efvincent/glfw.git
