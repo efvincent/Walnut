@@ -5,6 +5,7 @@
 #include "Walnut/Random.h"
 #include "Walnut/Timer.h"
 #include "Renderer.h"
+#include "Camera.h"
 
 #define UPDATE_RENDER_TIME_AT 25
 
@@ -13,6 +14,13 @@ using namespace Walnut;
 class ExampleLayer : public Walnut::Layer
 {
 public:
+	ExampleLayer() 
+		: mCamera(45.0f, 0.1f, 100.0f) {};
+
+	virtual void OnUpdate(float ts) override {
+		mCamera.OnUpdate(ts);
+	}
+
 	virtual void OnUIRender() override
 	{
 		// Render();
@@ -64,10 +72,14 @@ public:
 	
 	void Render() {
 		Timer timer;
+
 		mRenderer.OnResize(mViewportWidth, mViewportHeight);
+		mCamera.OnResize(mViewportWidth, mViewportHeight);
+
 		glm::vec3 lightDir = glm::vec3(-1);
 		glm::vec3 sphereOrigin = glm::vec3(0);
-		mRenderer.Render(mColor, lightDir, sphereOrigin);
+		
+		mRenderer.Render(mCamera, mColor, lightDir, sphereOrigin);
 
 		mLastRenderTime = timer.ElapsedMillis();
 		mTotalRenderTime += mLastRenderTime;
@@ -76,6 +88,8 @@ public:
 
 private:
 	Renderer mRenderer;
+	Camera mCamera;
+
 	bool      mShowMessageBox  = false;
 	uint32_t  mViewportWidth   = 0,
 	          mViewportHeight  = 0;
