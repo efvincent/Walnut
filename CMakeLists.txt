@@ -4,10 +4,7 @@ project(Walnut)
 
 find_package(Vulkan REQUIRED)
 
-# TODO: Figure out how to allow later standards
-if(NOT DEFINED CMAKE_CXX_STANDARD)
-	set(CMAKE_CXX_STANDARD 17)
-endif()
+set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(vendor)
 add_subdirectory(Walnut)
