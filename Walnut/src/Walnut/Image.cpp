@@ -1,9 +1,9 @@
 #include "Image.h"
 
-#include "imgui.h"
 #include "backends/imgui_impl_vulkan.h"
 
 #include "Application.h"
+#include <vulkan/vulkan_core.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -31,6 +31,7 @@ namespace Walnut {
 			{
 				case ImageFormat::RGBA:    return 4;
 				case ImageFormat::RGBA32F: return 16;
+				case ImageFormat::None:		 return 4;
 			}
 			return 0;
 		}
@@ -41,6 +42,7 @@ namespace Walnut {
 			{
 				case ImageFormat::RGBA:    return VK_FORMAT_R8G8B8A8_UNORM;
 				case ImageFormat::RGBA32F: return VK_FORMAT_R32G32B32A32_SFLOAT;
+				case ImageFormat::None:	   return VK_FORMAT_R8G8B8A8_UNORM;
 			}
 			return (VkFormat)0;
 		}
