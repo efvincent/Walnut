@@ -13,3 +13,8 @@ launch.json
 
 # Exclude
 !vendor/bin
+
+# CMake
+
+# CLang
+.cache
